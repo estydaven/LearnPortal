@@ -138,13 +138,24 @@ input:focus:-ms-input-placeholder {color: transparent}
     margin: 0 65px;    
 }
 .login-form {
+    position: relative;
     width: 417px;
-    background: url(../images/svg/rect-bg.svg) 0% 0% no-repeat;
-    background-size: auto;
+    background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(11px);
     border-radius: 15px;
     padding: 35px 55px 50px 55px;
     color: #ffffff;
+}
+.login-form::before {
+    content: "";
+    position: absolute;
+    inset: 0px;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(165deg, rgb(18, 217, 242), transparent 50%);
+    -webkit-mask: linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px);
+    -webkit-mask-composite: xor;
 }
 .form__header {
     margin-bottom: 20px;
@@ -237,11 +248,13 @@ input:focus:-ms-input-placeholder {color: transparent}
     height: 50px;
     text-align: center;
     font-size: 18px;
-    background: url(../images/svg/btn-bg.svg) no-repeat;
+    background: -webkit-gradient(linear, left top, left bottom, from(#08b1c4), to(#7eedfa));
+    background: linear-gradient(180deg, #08b1c4, #7eedfa);
     border-radius: 35px;
     color: #ffffff;
-    transition: all .3s linear;
+    transition: all .2s linear;
 }
 .form__button:hover {
-    transform: scale(.95);
+    -webkit-box-shadow: 0 0 55px rgb(29 241 255 / 44%), inset 0 -5px 18px #d0faff;
+    box-shadow: 0 0 55px rgb(29 241 255 / 44%), inset 0 -5px 18px #d0faff;
 }
