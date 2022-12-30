@@ -1,0 +1,247 @@
+/* Fonts */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local(''),
+            url('../fonts/inter-v12-latin-regular.woff2') format('woff2'),
+            url('../fonts/inter-v12-latin-regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: local(''),
+            url('../fonts/inter-v12-latin-500.woff2') format('woff2'),
+            url('../fonts/inter-v12-latin-500.woff') format('woff');
+}
+@font-face {
+    font-family: 'suisse_intlblack';
+    src: url('../fonts/suisseintl-black-webfont.woff2') format('woff2'),
+         url('../fonts/suisseintl-black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'suisse_intlbold';
+    src: url('../fonts/suisseintl-bold-webfont.woff2') format('woff2'),
+         url('../fonts/suisseintl-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'suisse_intlmedium';
+    src: url('../fonts/suisseintl-medium-webfont.woff2') format('woff2'),
+         url('../fonts/suisseintl-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'suisse_intlregular';
+    src: url('../fonts/suisseintl-regular-webfont.woff2') format('woff2'),
+         url('../fonts/suisseintl-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/* Common styles */
+body {
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #23395E;
+    color: #647288;
+    font-size: 16px;
+    font-family: 'suisse_intlregular';
+}
+.wrapper {
+    width: 100%;
+}
+.wrapper_login {
+    background: url(../images/bg-main-top.png) 0% -10% no-repeat, url(../images/bg-main-bottom.png) 100% 100% no-repeat;
+    background-size: auto auto;
+}
+.container {
+    max-width: 1168px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.container_login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.text-blue {
+    color: #0EE9FF;
+}
+input:focus::-webkit-input-placeholder {color: transparent}
+input:focus::-moz-placeholder {color: transparent}
+input:focus:-moz-placeholder {color: transparent}
+input:focus:-ms-input-placeholder {color: transparent}
+
+/* Login page styles */
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login__block_left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.login__logo {
+    width: 230px;
+    margin-bottom: 35px;
+}
+.login__title {
+    max-width: 570px;
+    font-family: 'suisse_intlbold';
+    font-size: 60px;
+    line-height: 70px;
+    text-align: right;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+.login__arrow {
+    margin: 0 65px;    
+}
+.login-form {
+    width: 417px;
+    background: url(../images/svg/rect-bg.svg) 0% 0% no-repeat;
+    background-size: auto;
+    backdrop-filter: blur(11px);
+    border-radius: 15px;
+    padding: 35px 55px 50px 55px;
+    color: #ffffff;
+}
+.form__header {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+.form__field {
+    width: 306px;
+    height: 48px;
+    border-radius: 200px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+}
+.password {
+	position: relative;
+}
+.password__control {
+    position: absolute;
+	top: 17px;
+	right: 15px;
+	display: inline-block;
+	width: 19px;
+	height: 12px;
+    background-image: url(../images/svg/eye.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.password__control.view::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: #ffffff;
+    transform: rotate(-45deg);
+    top: 5px;
+    position: absolute;
+}
+.form__field::placeholder {
+    color: #ffffff;
+    font-size: 15px;
+    font-family: 'suisse_intlregular';
+}
+.form__field_first {
+    margin-bottom: 15px;
+}
+.form__check {
+    display: flex;
+    margin: 25px 0;    
+}
+.form__checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.form__checkbox+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    line-height: 19px;
+    font-size: 14px;
+}
+.form__checkbox+label::before {
+    content: '';
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin-right: 12px;
+    background-color: rgb(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+.form__checkbox:checked+label::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 6px;
+    width: 14px;
+    height: 14px;
+    background-color: #0EE9FF;
+    border-radius: 4px;
+  }
+.form__button {
+    width: 312px;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    background: url(../images/svg/btn-bg.svg) no-repeat;
+    border-radius: 35px;
+    color: #ffffff;
+    transition: all .3s linear;
+}
+.form__button:hover {
+    transform: scale(.95);
+}
