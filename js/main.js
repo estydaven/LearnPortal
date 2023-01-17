@@ -44,3 +44,15 @@ $('.accordion-parent-js').on('click', function (e) {
     $(this).toggleClass('open');
     $(this).siblings('.submenu').toggleClass('open');
 });
+
+// User button
+$('.user-js').on('click', function () {
+    $('.user__inner').toggleClass('hide');
+    $('.user').toggleClass('open');
+});
+
+// Search
+$('.search__icon').on('click', function () {
+    $('.search').toggleClass('open');
+    $('.search__field').toggleClass('hide');
+});

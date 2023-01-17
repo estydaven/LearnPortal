@@ -1,19 +1,19 @@
 /* Fonts */
 @font-face {
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: local(""), url("../fonts/inter-v12-latin-regular.woff2") format("woff2"),
-    url("../fonts/inter-v12-latin-regular.woff") format("woff");
+  src: local(''),
+       url('../fonts/inter-v12-latin_cyrillic-regular.woff2') format('woff2'),
+       url('../fonts/inter-v12-latin_cyrillic-regular.woff') format('woff');
 }
 @font-face {
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  font-display: swap;
-  src: local(""), url("../fonts/inter-v12-latin-500.woff2") format("woff2"),
-    url("../fonts/inter-v12-latin-500.woff") format("woff");
+  src: local(''),
+       url('../fonts/inter-v12-latin_cyrillic-500.woff2') format('woff2'),
+       url('../fonts/inter-v12-latin_cyrillic-500.woff') format('woff');
 }
 @font-face {
   font-family: "suisse_intlblack";
@@ -92,6 +92,9 @@ body {
   overflow: hidden;
 }
 .wrapper_main {
+  background: url(../images/bg-main-top.png) 0% 15% no-repeat,
+  url(../images/bg-main-bottom.png) 100% 100% no-repeat;
+  background-size: auto auto;
 }
 .container {
   max-width: 1200px;
@@ -115,18 +118,14 @@ body {
 .text-blue {
   color: #0ee9ff;
 }
-input:focus::-webkit-input-placeholder {
-  color: transparent;
-}
-input:focus::-moz-placeholder {
-  color: transparent;
-}
-input:focus:-moz-placeholder {
-  color: transparent;
-}
-input:focus:-ms-input-placeholder {
-  color: transparent;
-}
+input:focus::-webkit-input-placeholder {color: transparent;}
+input:focus::-moz-placeholder {color: transparent;}
+input:focus:-moz-placeholder {color: transparent;}
+input:focus:-ms-input-placeholder {color: transparent;}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration { display: none; }
 .hide {
   display: none;
 }
@@ -288,6 +287,126 @@ input:focus:-ms-input-placeholder {
   box-shadow: 0 0 55px rgb(29 241 255 / 44%), inset 0 -5px 18px #d0faff;
 }
 
+/* Header styles */
+.header {
+  padding: 30px 0;
+}
+.header__logo {
+  width: 156px;
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.search {
+  position: relative;
+  width: 55px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11px);
+  border-radius: 300px;  
+  padding: 18px 26px 21px 18px;
+  height: 55px;
+  line-height: 17px;
+}
+.search.open {
+  flex: 1;
+}
+.search::before {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(165deg, rgb(18, 217, 242), transparent 50%);
+  -webkit-mask: linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)
+      content-box content-box,
+    linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px);
+  -webkit-mask-composite: xor;
+}
+.search__icon {
+  display: block;
+  width: 19px;
+  height: 19px;
+  background-image: url(../images/svg/search.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  right: 18px;
+  top: 17px;
+  transition: all .3s linear;
+}
+.search__icon:hover {
+  transform: scale(1.2);
+}
+.search__field {
+  width: 100%;  
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  font-weight: 500;
+  background: transparent;
+}
+.search__field::placeholder {
+  color: #ffffff;
+  font-family: "Inter";
+  font-weight: 500;
+}
+.user {
+  width: 55px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 18px;
+  margin-left: 18px;
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 16px;
+  border-radius: 300px;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11px);
+  cursor: pointer;
+}
+.user.open {
+  width: 237px;
+}
+.user::before {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(165deg, rgb(18, 217, 242), transparent 50%);
+  -webkit-mask: linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)
+      content-box content-box,
+    linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px);
+  -webkit-mask-composite: xor;
+}
+.user__image {
+  transition: all .3s linear;
+}
+.user__image:hover {
+  transform: scale(1.2);
+}
+.user__inner {
+  display: flex;
+  align-items: center;
+  margin-left: 14px;
+  font-family: "Inter";
+  font-weight: 500;
+}
+.user__inner.hide {
+  display: none;
+}
+.user__icon {
+  margin-left: 24px;
+  filter: drop-shadow(0 4px 2px #1f3c6d) drop-shadow(0 0 15px rgba(0,255,240,1));  
+}
+
 /* Navigation styles */
 .tab-header {
   display: flex;
@@ -398,16 +517,58 @@ input:focus:-ms-input-placeholder {
 
 /* Main content styles */
 .tab-content {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  height: calc(100% - 87px);
 }
 .tab-content__item {
   display: none;
-  padding: 20px;
-  border: 1px solid #ddd;
-  margin-top: -1px;
+  height: 100%;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 35px 55px 30px 55px;
 }
 .tab-content__item.active {
   display: block;
+}
+.tab-buttons {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 22px;
+  align-items: center;
+  margin-top: 30px;
+}
+.tab-button {
+  position: relative;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  flex: 1;
+  height: 57px;
+  border-radius: 15px;
+  padding: 19px 20px;
+  transition: all .3s linear;
+}
+.tab-button:hover {
+  transform: scale(0.9);
+}
+.tab-button_prev {
+  border: 2px solid #FFFFFF;  
+  background-image: url(../images/svg/arrow-left.svg);
+  background-repeat: no-repeat;
+  background-position: center left 20px;
+}
+.tab-button_next {
+  background: linear-gradient(180deg, #08B1C4 0%, #7EEDFA 100%);
+}
+.tab-button_next::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 16px;
+  background-image: url(../images/svg/arrow-right.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
