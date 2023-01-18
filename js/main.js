@@ -38,6 +38,20 @@ $('.js-tab-trigger').click(function () {
     content.addClass('active'); // 4
 });
 
+// Prev/Next Buttons
+$(document).ready(() => {
+    $('.js-btn-next').click(function () {
+        if (!$('.js-tab-content').last().hasClass('active')) {
+            $('.active').removeClass('active').next().addClass('active')
+        }
+    });
+    $('.js-btn-prev').click(function () {
+        if (!$('.js-tab-content').first().hasClass('active')) { 
+            $('.active').removeClass('active').prev().addClass('active')
+        }
+    });
+})
+
 // Acccordion menu navigation
 $('.accordion-parent-js').on('click', function (e) {
     e.preventDefault();

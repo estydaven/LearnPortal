@@ -513,6 +513,8 @@ input::-webkit-search-results-decoration { display: none; }
 }
 .submenu__head_icon {
   position: relative;
+}
+.submenu__head_icon.open {
   color: #0EE9FF;
 }
 .submenu__head_icon::before {
