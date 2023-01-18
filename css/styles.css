@@ -382,9 +382,6 @@ input::-webkit-search-results-decoration { display: none; }
   backdrop-filter: blur(11px);
   cursor: pointer;
 }
-.user.open {
-  width: 237px;
-}
 .user::before {
   content: "";
   position: absolute;
@@ -405,14 +402,17 @@ input::-webkit-search-results-decoration { display: none; }
   transform: scale(1.2);
 }
 .user__inner {
-  display: flex;
+  display: none;
   align-items: center;
   margin-left: 14px;
   font-family: "Inter";
   font-weight: 500;
 }
-.user__inner.hide {
-  display: none;
+.user:hover {
+  width: 237px;
+}
+.user:hover .user__inner{
+  display: flex;
 }
 .user__icon {
   margin-left: 24px;
