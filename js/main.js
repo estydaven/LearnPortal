@@ -64,3 +64,21 @@ $('.search__icon').on('click', function () {
     $('.search').toggleClass('open');
     $('.search__field').toggleClass('hide');
 });
+
+// Popup shot
+const videoButtons = document.querySelectorAll('.video__button');
+const popupShot = document.querySelector('.popup_shot');
+const closeButton = document.querySelectorAll('.popup__close');
+const body = document.body;
+
+function showPopupShot() {
+    popupShot.style.display = 'flex';
+    body.style.overflow = 'hidden';
+}
+function closePopupShot() {
+    popupShot.style.display = 'none';
+    body.style.overflow = 'auto';
+}
+
+videoButtons.forEach(btn => btn.addEventListener('click', showPopupShot));
+closeButton.forEach(btnClose => btnClose.addEventListener('click', closePopupShot));
