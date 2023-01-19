@@ -82,3 +82,89 @@ function closePopupShot() {
 
 videoButtons.forEach(btn => btn.addEventListener('click', showPopupShot));
 closeButton.forEach(btnClose => btnClose.addEventListener('click', closePopupShot));
+
+// ************************ Drag and drop ***************** //
+let dropArea = document.querySelector(".drop-area");
+
+// Prevent default drag behaviors
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, preventDefaults, false);   
+  document.body.addEventListener(eventName, preventDefaults, false);
+});
+
+// Highlight drop area when item is dragged over it
+['dragenter', 'dragover'].forEach(eventName => {
+  dropArea.addEventListener(eventName, highlight, false);
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, unhighlight, false);
+})
+
+// Handle dropped files
+dropArea.addEventListener('drop', handleDrop, false);
+
+function preventDefaults (e) {
+  e.preventDefault();
+  e.stopPropagation();
+}
+
+function highlight(e) {
+  dropArea.classList.add('highlight');
+}
+
+function unhighlight(e) {
+  dropArea.classList.remove('highlight');
+}
+
+function handleDrop(e) {
+  var dt = e.dataTransfer;
+  var files = dt.files;
+
+  handleFiles(files);
+}
+
+function handleFiles(files) {
+  files = [...files];
+  files.forEach(uploadFile);
+  files.forEach(previewFile);
+}
+
+let gallery = document.getElementById('gallery');
+let galleryButton = document.querySelector('.gallery-files__button');
+galleryButton.addEventListener('click', closePopupShot);
+
+function previewFile(file) {
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onloadend = function() {
+    galleryButton.style.display = 'block';
+    dropArea.classList.add('open');
+    
+    let divImage = document.createElement('div');
+    divImage.className = 'gallery-files__block';
+    let imageTrash = document.createElement('div');
+    imageTrash.className = 'gallery-files__trash';
+    let img = document.createElement('img');
+    img.className = 'gallery-files__image'  ;  
+    img.src = reader.result;
+    gallery.appendChild(divImage).appendChild(img);
+    divImage.appendChild(imageTrash);
+
+    let galleryBlocks = document.querySelectorAll('.gallery-files__block');
+    galleryBlocks.forEach(el => el.addEventListener('click', function(e) {
+      this.style.display = 'none';
+    }));
+  }
+}
+
+function uploadFile(file, i) {
+  var url = '';
+  var xhr = new XMLHttpRequest();
+  var formData = new FormData();
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+  formData.append('file', file);
+  xhr.send(formData);
+}

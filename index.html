@@ -429,7 +429,7 @@
                                             <img src="images/video1.jpg" alt="" class="video__image">
                                             <div class="video__info">
                                                 <h3 class="video__title">Mama-edu “Аккаунт менеджер”</h3>
-                                                <a href="" class="link">mama-edu.com</a>
+                                                <a href="" class="link" target="_blank">mama-edu.com</a>
                                                 <p class="video__text">Логин: <span class="link">d.udinceva@rocketprofit.com</span></p>
                                                 <p class="video__text">Пароль: 090607callR</p>
                                             </div>
@@ -441,7 +441,7 @@
                                             <img src="images/video2.jpg" alt="" class="video__image">
                                             <div class="video__info">
                                                 <h3 class="video__title">Affhub “Арбитраж для новичков”</h3>
-                                                <a href="" class="link">affhub.net/aboutstudy</a>
+                                                <p class="video__text"><a href="" class="link" target="_blank">affhub.net/aboutstudy</a></p>
                                                 <p class="video__text">Зарегаться самостоятельно</p>
                                             </div>
                                         </div>
@@ -452,8 +452,7 @@
                                             <img src="images/video3.jpg" alt="" class="video__image">
                                             <div class="video__info">
                                                 <h3 class="video__title">Cybermarketing “Курс по СРА”</h3>
-                                                <a href="" class="link">mama-edu.com</a>
-                                                <p class="video__text"><span class="link">cybermarketing.ru/video-courses/prom...</span></p>
+                                                <p class="video__text"><a href="" class="link" target="_blank">cybermarketing.ru/video-courses/prom...</a></p>
                                                 <p class="video__text">Зарегаться самостоятельно</p>
                                             </div>
                                         </div>
@@ -464,8 +463,7 @@
                                             <img src="images/video4.jpg" alt="" class="video__image">
                                             <div class="video__info">
                                                 <h3 class="video__title">Lucky-center “Арбитраж трафика”</h3>
-                                                <a href="" class="link">mama-edu.com</a>
-                                                <p class="video__text"><span class="link">luckycenter.ekvio.ru/395/lp/1575-kurcy...</span></p>
+                                                <p class="video__text"><a href="" class="link" target="_blank">luckycenter.ekvio.ru/395/lp/1575-kurcy...</a></p>
                                                 <p class="video__text">Логин: <span class="link">2yyegorguu7@list.ru</span></p>
                                                 <p class="video__text">Пароль: qypfoj-sYtpyn-7kajha</p>
                                             </div>
@@ -477,8 +475,7 @@
                                             <img src="images/video4.jpg" alt="" class="video__image">
                                             <div class="video__info">
                                                 <h3 class="video__title">Lucky-center “Арбитраж трафика”</h3>
-                                                <a href="" class="link">mama-edu.com</a>
-                                                <p class="video__text"><span class="link">luckycenter.ekvio.ru/395/lp/1575-kurcy...</span></p>
+                                                <p class="video__text"><a href="" class="link" target="_blank">luckycenter.ekvio.ru/395/lp/1575-kurcy...</a></p>
                                                 <p class="video__text">Логин: <span class="link">2yyegorguu7@list.ru</span></p>
                                                 <p class="video__text">Пароль: qypfoj-sYtpyn-7kajha</p>
                                             </div> 
@@ -516,11 +513,18 @@
     <div class="popup popup_shot">
         <div class="popup__overlay"></div>
         <div class="popup__inner popup__inner_shot">
-            <div class="popup__wrapper">
-                <img src="images/shot.png" class="popup__image popup__image_shot" alt="">       
-                <p class="popup__title popup__title_shot">Вставь скрин о просмотре видео и получении сертификата</p>
-                <p class="popup__subtitle">Вставить можно при помощи Drag’n’Drop в это окно или с помощью кнопки ниже</p>
-                <input type="text" class="popup__button" placeholder="Выбрать скриншот"> 
+            <div class="popup__wrapper drop-area" id="drop-area">
+                <form class="file-form">
+                    <img src="images/shot.png" class="popup__image popup__image_shot" alt="">       
+                    <p class="popup__title popup__title_shot">Вставь скрин о просмотре видео и получении сертификата</p>
+                    <p class="popup__subtitle">Вставить можно при помощи Drag’n’Drop в это окно или с помощью кнопки ниже</p>
+                    <label class="drop-area__button" for="fileElem">Выбрать скриншот</label>
+                    <input type="file" id="fileElem" class="drop-area__file" multiple accept="image/*" onchange="handleFiles(this.files)">
+                </form>
+                <div id="gallery" class="gallery-files"></div>
+                <div class="gallery-files__btn">
+                    <button class="gallery-files__button">Отправить скрины</button>
+                </div>                
             </div>  
             <div class="popup__close popup__close_shot">Вернуться</div>             
         </div>        
