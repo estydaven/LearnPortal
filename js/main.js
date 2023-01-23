@@ -152,8 +152,14 @@ function previewFile(file) {
     divImage.appendChild(imageTrash);
 
     let galleryBlocks = document.querySelectorAll('.gallery-files__block');
-    galleryBlocks.forEach(el => el.addEventListener('click', function(e) {
-      this.style.display = 'none';
+    for (let i = 0; i < galleryBlocks.length; i++) {
+      if (galleryBlocks.length > 1) {
+        document.querySelector('.file-form').style.display = 'none';
+      }
+    }
+    galleryBlocks.forEach(el => el.addEventListener('click', function() {
+      this.remove();
+      document.querySelector('.file-form').style.display = 'block';
     }));
   }
 }

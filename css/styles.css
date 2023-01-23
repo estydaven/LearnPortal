@@ -511,8 +511,12 @@ input::-webkit-search-results-decoration { display: none; }
 .submenu__item {
   padding: 15px 27px;
   cursor: pointer;
+  transition: all .3s linear;
 }
 .submenu__item.active {
+  color: #0EE9FF;
+}
+.submenu__item:hover {
   color: #0EE9FF;
 }
 .submenu__head_icon {
@@ -857,7 +861,8 @@ input::-webkit-search-results-decoration { display: none; }
 .drop-area.open {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-between;
+  justify-content: flex-end;
+  column-gap: 13px;
   flex-wrap: wrap;
   border: none;
   padding: 20px 20px 35px 20px;
