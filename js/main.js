@@ -36,18 +36,28 @@ $('.js-tab-trigger').click(function () {
 
     $('.js-tab-content.active').removeClass('active'); // 3
     content.addClass('active'); // 4
+
+    if($('.private-cabinet').hasClass('active')) {
+      $('.tab-buttons').css('display', 'none');
+      $('.tab-content').addClass('open');
+      $('.cabinet-menu').removeClass('hide');
+    } else {
+      $('.tab-buttons').css('display', 'flex');
+      $('.tab-content').removeClass('open');
+      $('.cabinet-menu').addClass('hide');
+    }
 });
 
 // Prev/Next Buttons
 $(document).ready(() => {
     $('.js-btn-next').click(function () {
         if (!$('.js-tab-content').last().hasClass('active')) {
-            $('.active').removeClass('active').next().addClass('active')
+            $('.active').removeClass('active').next().addClass('active');
         }
     });
     $('.js-btn-prev').click(function () {
         if (!$('.js-tab-content').first().hasClass('active')) { 
-            $('.active').removeClass('active').prev().addClass('active')
+            $('.active').removeClass('active').prev().addClass('active');
         }
     });
 })
@@ -174,3 +184,12 @@ function uploadFile(file, i) {
   formData.append('file', file);
   xhr.send(formData);
 }
+
+// Private cabinet script
+
+// $('.user-js').on('click', function () {
+//   $('.cabinet-menu').removeClass('hide');
+//   $('.private-cabinet').removeClass('hide');
+//   $('.tab-content').addClass('hide');
+//   $('.tab-buttons').css('display', 'none');
+// });
