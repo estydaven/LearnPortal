@@ -206,7 +206,7 @@ function tick() {
 
 // Quiz
 
-// TODO: Скорректировать сброс счетчика, и возможно, чекбоксов!!!
+// TODO: Скорректировать сброс счетчика, и возможно, чекбоксов!!! Сделать сброс теста при успешном прохождении и переходе на следующую тему
 
 const answers = document.querySelectorAll('.answer__radio');
 const answerTitle = document.querySelectorAll('.quiz__title');
