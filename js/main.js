@@ -28,7 +28,7 @@
 
 // Tabs menu
 $('.js-tab-trigger').click(function () {
-  var id = $(this).attr('data-tab'),
+  let id = $(this).attr('data-tab'),
     content = $('.js-tab-content[data-tab="' + id + '"]');
 
   $('.js-tab-trigger.active').removeClass('active'); // 1
