@@ -31,11 +31,14 @@ $('.js-tab-trigger').click(function () {
   let id = $(this).attr('data-tab'),
     content = $('.js-tab-content[data-tab="' + id + '"]');
 
-  $('.js-tab-trigger.active').removeClass('active'); // 1
-  $(this).addClass('active'); // 2
+  $('.js-tab-trigger.active').removeClass('active');
+  $(this).addClass('active');
 
-  $('.js-tab-content.active').removeClass('active'); // 3
-  content.addClass('active'); // 4
+  $('.js-tab-content.active').removeClass('active');
+  content.addClass('active');
+
+  $('.task-header').removeClass('hide');
+  $('.task-content.active').removeClass('active');
 
   if ($('.private-cabinet').hasClass('active')) {
     $('.tab-buttons').css('display', 'none');
@@ -278,3 +281,12 @@ function restartQuiz() {
 quizButtonStart.addEventListener('click', startQuiz);
 quizButton.addEventListener('click', showResult);
 quizButtonIncorrect.addEventListener('click', restartQuiz);
+
+$('.task-header').click(function () {
+  let id = $(this).attr('data-task'),
+    content = $('.task-content[data-task="' + id + '"]');
+
+  $('.task-header').addClass('hide');
+  $('.task-content.active').removeClass('active');
+  content.addClass('active');
+});
