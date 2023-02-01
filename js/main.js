@@ -245,15 +245,17 @@ function showResult() {
     quizResultCorrect.classList.remove('hide');
     quizButton.style.display = 'none';
     quizTextCorrect.innerText = score;
+    time = 600;
     clearInterval(intr);
-    //timerTime.innerText = '10:00';
+    timerTime.innerText = '10:00';
   }
   if (score < 2) {
     quizResultInorrect.classList.remove('hide');
     quizButton.style.display = 'none';
     quizTextFail.innerText = score;
+    time = 600;
     clearInterval(intr);
-    //timerTime.innerText = '10:00';
+    timerTime.innerText = '10:00';
   }
 }
 
@@ -268,6 +270,7 @@ function restartQuiz() {
   if (trying == 3) {
     quizButton.style.display = 'none';
     quizResultFail.classList.remove('hide');
+    time = 600;
     clearInterval(intr);
   }
 }
