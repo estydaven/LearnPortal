@@ -57,12 +57,12 @@ $('.js-tab-trigger').click(function () {
 
 $(document).ready(() => {
   $('.js-btn-next').click(function () {
-    if (!$('.js-tab-content').last().hasClass('active')) {
+    if (!$('.js-next').last().hasClass('active')) {
       $('.active').removeClass('active').next().addClass('active');
     }
   });
   $('.js-btn-prev').click(function () {
-    if (!$('.js-tab-content').first().hasClass('active')) {
+    if (!$('.js-next').first().hasClass('active')) {
       $('.active').removeClass('active').prev().addClass('active');
     }
   });
