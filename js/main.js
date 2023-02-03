@@ -27,12 +27,14 @@
 // })
 
 // Tabs menu
+
 $('.js-tab-trigger').click(function () {
   let id = $(this).attr('data-tab'),
     content = $('.js-tab-content[data-tab="' + id + '"]');
 
   $('.js-tab-trigger.active').removeClass('active');
   $(this).addClass('active');
+  $(this).addClass('showed');
 
   $('.js-tab-content.active').removeClass('active');
   content.addClass('active');
@@ -52,6 +54,7 @@ $('.js-tab-trigger').click(function () {
 });
 
 // Prev/Next Buttons
+
 $(document).ready(() => {
   $('.js-btn-next').click(function () {
     if (!$('.js-tab-content').last().hasClass('active')) {
@@ -66,19 +69,23 @@ $(document).ready(() => {
 })
 
 // Acccordion menu navigation
+
 $('.accordion-parent-js').on('click', function (e) {
   e.preventDefault();
   $(this).toggleClass('open');
+  $(this).addClass('showed');
   $(this).siblings('.submenu').toggleClass('open');
 });
 
 // Search
+
 $('.search__icon').on('click', function () {
   $('.search').toggleClass('open');
   $('.search__field').toggleClass('hide');
 });
 
 // Popup shot
+
 const videoButtons = document.querySelectorAll('.video__button');
 const popupShot = document.querySelector('.popup_shot');
 const closeButton = document.querySelectorAll('.popup__close');
@@ -189,7 +196,8 @@ function uploadFile(file, i) {
 }
 
 // Timer
-let time = 600;
+
+let time = 1800;
 let intr;
 
 function start_timer() {
@@ -204,7 +212,7 @@ function tick() {
     clearInterval(intr);
   }
   secs = secs >= 10 ? secs : "0" + secs;
-  $(".timer__time").html("0" + mins + ':' + secs);
+  $(".timer__time").html(mins + ':' + secs);
 }
 
 // Quiz
@@ -219,18 +227,19 @@ const quizResultInorrect = document.querySelector('.quiz-result_incorrect');
 const quizResultFail = document.querySelector('.quiz-result_fail');
 const timerTime = document.querySelector('.timer__time');
 const quizButtonIncorrect = document.querySelector('.quiz-button_incorrect');
-const quizButtonStart = document.querySelector('.quiz-button_start');
+const quizButtonStart = document.querySelector('.quiz-preview__button');
 const articleWrapper = document.querySelector('.article__wrap');
 const quizLength = document.querySelectorAll('.quiz-questions');
 const quizTextCorrect = document.querySelector('.quiz-text_correct');
 const quizTextFail = document.querySelector('.quiz-text_fail');
+const qiuzPreviewWrapper = document.querySelector('.quiz-preview');
 let score = 0;
 let trying = 0;
 
 function startQuiz() {
   start_timer();
   articleWrapper.style.display = 'flex';
-  quizButtonStart.style.display = 'none';
+  qiuzPreviewWrapper.classList.add('hide');
 }
 
 function showResult() {
@@ -248,7 +257,7 @@ function showResult() {
     quizResultCorrect.classList.remove('hide');
     quizButton.style.display = 'none';
     quizTextCorrect.innerText = score;
-    time = 600;
+    time = 1800;
     clearInterval(intr);
     timerTime.innerText = '10:00';
   }
@@ -256,7 +265,7 @@ function showResult() {
     quizResultInorrect.classList.remove('hide');
     quizButton.style.display = 'none';
     quizTextFail.innerText = score;
-    time = 600;
+    time = 1800;
     clearInterval(intr);
     timerTime.innerText = '10:00';
   }
@@ -273,7 +282,7 @@ function restartQuiz() {
   if (trying == 3) {
     quizButton.style.display = 'none';
     quizResultFail.classList.remove('hide');
-    time = 600;
+    time = 1800;
     clearInterval(intr);
   }
 }
@@ -281,6 +290,8 @@ function restartQuiz() {
 quizButtonStart.addEventListener('click', startQuiz);
 quizButton.addEventListener('click', showResult);
 quizButtonIncorrect.addEventListener('click', restartQuiz);
+
+// Tasks script
 
 $('.task-header').click(function () {
   let id = $(this).attr('data-task'),
