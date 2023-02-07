@@ -336,15 +336,16 @@ input::-webkit-search-results-decoration { display: none; }
   justify-content: flex-end;
 }
 .search {
+  display: flex;
+  align-items: center;
   position: relative;
   width: 55px;
   cursor: pointer;
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(11px);
   border-radius: 300px;  
-  padding: 18px 26px 21px 18px;
+  padding: 0 26px;
   height: 55px;
-  line-height: 17px;
 }
 .search.open {
   flex: 1;
@@ -385,6 +386,7 @@ input::-webkit-search-results-decoration { display: none; }
   outline: none;
   font-weight: 500;
   background: transparent;
+  padding-bottom: 2px;
 }
 .search__field::placeholder {
   color: #ffffff;
@@ -479,6 +481,7 @@ input::-webkit-search-results-decoration { display: none; }
   padding-left: 19px;
   color: #ffffff;
   cursor: pointer;
+  border: 1px solid transparent;
 }
 .tab-header__item.active {
   color: #0EE9FF;
@@ -511,7 +514,6 @@ input::-webkit-search-results-decoration { display: none; }
   font-size: 14px;
   font-weight: 400;
   overflow: hidden;
-  transition: 0.3s all linear;
 }
 .submenu_main.open {
   padding: 0 19px 9px 19px;
@@ -524,12 +526,8 @@ input::-webkit-search-results-decoration { display: none; }
 .submenu.open {
   max-height: 1100px;
 }
-.submenu.open .submenu__item {
-  padding-bottom: 3px;
-  padding-right: 15px;
-}
 .submenu__item {
-  padding: 15px 27px;
+  padding: 15px 15px 3px 27px;
   cursor: pointer;
   transition: all .3s linear;
   color: rgb(255, 255, 255, 0.6);
@@ -595,7 +593,7 @@ input::-webkit-search-results-decoration { display: none; }
   flex: 1;
   height: 57px;
   border-radius: 15px;
-  padding: 19px 20px;
+  padding: 0 20px;
   transition: all .3s linear;
 }
 .tab-button:hover {
@@ -1085,6 +1083,7 @@ input::-webkit-search-results-decoration { display: none; }
   border-radius: 20px;
   padding: 30px 30px 35px 20px;
   margin-bottom: 26px;
+  cursor: pointer;
 }
 .task-header.hide {
   display: none;
@@ -1171,6 +1170,7 @@ input::-webkit-search-results-decoration { display: none; }
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   color: #ffffff;
   font-size: 16px;
   font-family: "suisse_intlbold";
@@ -1182,7 +1182,7 @@ input::-webkit-search-results-decoration { display: none; }
   font-size: 16px;
   color: #23395E;
   line-height: 22px;
-  width: calc(100% - 53px);
+  flex: 1;
 }
 .task-list__link {
   color: #0DB4C7;
