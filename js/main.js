@@ -28,16 +28,21 @@
 
 // Tabs menu
 
-$('.js-tab-trigger').click(function () {
-  let id = $(this).attr('data-tab'),
+$('.js-tab-trigger').click(function () {  
+  if($(this).hasClass('showed')) {
+    let id = $(this).attr('data-tab'),
     content = $('.js-tab-content[data-tab="' + id + '"]');
 
-  $('.js-tab-trigger.active').removeClass('active');
-  $(this).addClass('active');
-  $(this).addClass('showed');
+    $('.js-tab-trigger.active').removeClass('active');
+    $('.js-tab-content.active').removeClass('active');
 
-  $('.js-tab-content.active').removeClass('active');
-  content.addClass('active');
+    content.addClass('active');
+    $(this).addClass('showed');
+    $(this).addClass('active');
+  }
+  if(!$(this).hasClass('showed')) {
+    $('.popup_access').css('display', 'flex');
+  }
 
   $('.task-header').removeClass('hide');
   $('.task-content.active').removeClass('active');
@@ -50,6 +55,26 @@ $('.js-tab-trigger').click(function () {
     $('.tab-buttons').css('display', 'flex');
     $('.tab-content').removeClass('open');
     $('.cabinet-menu').addClass('hide');
+  }
+});
+$('.submenu__item').click(function () {
+  if($(this).hasClass('showed')) {
+    $(this).next().addClass('add');
+    $(this).next().addClass('showed');
+  }
+});
+$('.submenu__head').click(function (e) {
+  $(this).next().children().addClass('add');
+  $(this).next().children().addClass('showed');
+  
+  if($(this).parent().hasClass('showed')) {
+    e.preventDefault();
+    $(this).toggleClass('open');
+    $(this).addClass('showed');
+    $(this).siblings('.submenu').toggleClass('open');
+  }  
+  if(!$(this).hasClass('showed')) {
+    $('.popup_access').css('display', 'flex');
   }
 });
 
@@ -88,7 +113,9 @@ $('.search__icon').on('click', function () {
 
 const videoButtons = document.querySelectorAll('.video__button');
 const popupShot = document.querySelector('.popup_shot');
-const closeButton = document.querySelectorAll('.popup__close');
+const popupAccess = document.querySelector('.popup_access');
+const closeButtonAccess = document.querySelector('.popup__close_access');
+const closeButtonShot = document.querySelector('.popup__close_shot');
 const body = document.body;
 
 function showPopupShot() {
@@ -99,9 +126,14 @@ function closePopupShot() {
   popupShot.style.display = 'none';
   body.style.overflow = 'auto';
 }
+function closePopupAccess() {
+  popupAccess.style.display = 'none';
+  body.style.overflow = 'auto';
+}
 
 videoButtons.forEach(btn => btn.addEventListener('click', showPopupShot));
-closeButton.forEach(btnClose => btnClose.addEventListener('click', closePopupShot));
+closeButtonShot.addEventListener('click', closePopupShot);
+closeButtonAccess.addEventListener('click', closePopupAccess);
 
 // ************************ Drag and drop ***************** //
 let dropArea = document.querySelector(".drop-area");

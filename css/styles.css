@@ -386,7 +386,6 @@ input::-webkit-search-results-decoration { display: none; }
   outline: none;
   font-weight: 500;
   background: transparent;
-  padding-bottom: 2px;
 }
 .search__field::placeholder {
   color: #ffffff;
