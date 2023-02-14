@@ -109,17 +109,32 @@ $('.search__icon').on('click', function () {
   $('.search__field').toggleClass('hide');
 });
 
-// Popup shot
+// Popup shot and task
+// TODO: Попробовать функцию закрытия попапа сделать одну на все
+// TODO: Поменять цвет кнопки "Отправить скрин о просмотре" при отправке скринов
 
 const videoButtons = document.querySelectorAll('.video__button');
 const popupShot = document.querySelector('.popup_shot');
 const popupAccess = document.querySelector('.popup_access');
 const closeButtonAccess = document.querySelector('.popup__close_access');
 const closeButtonShot = document.querySelector('.popup__close_shot');
+const closeButtonTask = document.querySelector('.popup__close_task');
+const noScreensBtn = document.querySelector('.no-screans');
+const addScreensBtn = document.querySelector('.add-screans');
+const popupTask = document.querySelector('.popup_task');
+const taskButton = document.querySelector('.task-button');
+const fileFormTitle = document.querySelector('.file-form__title');
+const fileTextarea = document.querySelector('.file-form__textarea');
+const fileFormShot = document.querySelector('.file-form__shot');
+const fileFormBtns = document.querySelector('.file-form__buttons');
 const body = document.body;
 
 function showPopupShot() {
   popupShot.style.display = 'flex';
+  body.style.overflow = 'hidden';
+}
+function showPopupTask() {
+  popupTask.style.display = 'flex';
   body.style.overflow = 'hidden';
 }
 function closePopupShot() {
@@ -130,10 +145,28 @@ function closePopupAccess() {
   popupAccess.style.display = 'none';
   body.style.overflow = 'auto';
 }
-
+function closePopupTask() {
+  popupTask.style.display = 'none';
+  body.style.overflow = 'auto';
+}
+function showScreensTask() {
+  fileFormTitle.classList.add('hide');
+  fileTextarea.classList.add('hide');
+  fileFormBtns.classList.add('hide');
+  fileFormShot.classList.remove('hide');
+}
+// videoButtons.forEach(btn => btn.addEventListener('click', function () {
+//   popupShot.style.display = 'flex';
+//   body.style.overflow = 'hidden';
+//   btn.style.color = 'red';
+// }));
 videoButtons.forEach(btn => btn.addEventListener('click', showPopupShot));
 closeButtonShot.addEventListener('click', closePopupShot);
 closeButtonAccess.addEventListener('click', closePopupAccess);
+taskButton.addEventListener('click', showPopupTask);
+closeButtonTask.addEventListener('click', closePopupTask);
+noScreensBtn.addEventListener('click', closePopupTask);
+addScreensBtn.addEventListener('click', showScreensTask);
 
 // ************************ Drag and drop ***************** //
 let dropArea = document.querySelector(".drop-area");
