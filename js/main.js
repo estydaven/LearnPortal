@@ -140,6 +140,12 @@ function showPopupTask() {
 function closePopupShot() {
   popupShot.style.display = 'none';
   body.style.overflow = 'auto';
+  const galleryBlocks = document.querySelectorAll('.gallery-files__block');
+  const fileForm = document.querySelector('.file-form');
+  fileForm.style.display = 'block';
+  galleryBlocks.forEach(block => block.remove());
+  dropArea.classList.remove('open');
+  galleryButton.style.display = 'none';
 }
 function closePopupAccess() {
   popupAccess.style.display = 'none';
@@ -155,11 +161,7 @@ function showScreensTask() {
   fileFormBtns.classList.add('hide');
   fileFormShot.classList.remove('hide');
 }
-// videoButtons.forEach(btn => btn.addEventListener('click', function () {
-//   popupShot.style.display = 'flex';
-//   body.style.overflow = 'hidden';
-//   btn.style.color = 'red';
-// }));
+
 videoButtons.forEach(btn => btn.addEventListener('click', showPopupShot));
 closeButtonShot.addEventListener('click', closePopupShot);
 closeButtonAccess.addEventListener('click', closePopupAccess);
@@ -167,6 +169,10 @@ taskButton.addEventListener('click', showPopupTask);
 closeButtonTask.addEventListener('click', closePopupTask);
 noScreensBtn.addEventListener('click', closePopupTask);
 addScreensBtn.addEventListener('click', showScreensTask);
+const gallery = document.getElementById('gallery');
+const galleryButton = document.querySelector('.gallery-files__button');
+
+galleryButton.addEventListener('click', closePopupShot);
 
 // ************************ Drag and drop ***************** //
 let dropArea = document.querySelector(".drop-area");
@@ -203,8 +209,8 @@ function unhighlight(e) {
 }
 
 function handleDrop(e) {
-  var dt = e.dataTransfer;
-  var files = dt.files;
+  let dt = e.dataTransfer;
+  let files = dt.files;
 
   handleFiles(files);
 }
@@ -214,10 +220,6 @@ function handleFiles(files) {
   files.forEach(uploadFile);
   files.forEach(previewFile);
 }
-
-let gallery = document.getElementById('gallery');
-let galleryButton = document.querySelector('.gallery-files__button');
-galleryButton.addEventListener('click', closePopupShot);
 
 function previewFile(file) {
   let reader = new FileReader();
@@ -250,9 +252,9 @@ function previewFile(file) {
 }
 
 function uploadFile(file, i) {
-  var url = '';
-  var xhr = new XMLHttpRequest();
-  var formData = new FormData();
+  let url = '';
+  let xhr = new XMLHttpRequest();
+  let formData = new FormData();
   xhr.open('POST', url, true);
   xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
