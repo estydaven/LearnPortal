@@ -196,6 +196,7 @@ videoButtons.forEach(btn => btn.addEventListener('click', () => {
   const buttonSend = document.querySelector('.gallery-files__button');
   buttonSend.setAttribute('data-sendData', btnData);
   fileComment.classList.add('hide');
+  popupWrapper.classList.remove('popup__wrapper_task');
 }));
 
 closeButtonShot.addEventListener('click', resetPopupShot);
