@@ -110,7 +110,6 @@ $('.search__icon').on('click', function () {
 });
 
 // Popup shot and task
-// TODO: Попробовать функцию закрытия попапа сделать одну на все
 // TODO: Поменять цвет кнопки "Отправить скрин о просмотре" при отправке скринов
 
 const videoButtons = document.querySelectorAll('.video__button');
@@ -121,58 +120,98 @@ const closeButtonShot = document.querySelector('.popup__close_shot');
 const closeButtonTask = document.querySelector('.popup__close_task');
 const noScreensBtn = document.querySelector('.no-screans');
 const addScreensBtn = document.querySelector('.add-screans');
-const popupTask = document.querySelector('.popup_task');
 const taskButton = document.querySelector('.task-button');
 const fileFormTitle = document.querySelector('.file-form__title');
-const fileTextarea = document.querySelector('.file-form__textarea');
-const fileFormShot = document.querySelector('.file-form__shot');
-const fileFormBtns = document.querySelector('.file-form__buttons');
+const fileComment = document.querySelector('.file-form__comment');
+const fileContent = document.querySelector('.file-form__content');
+const fileFormButtons= document.querySelector('.file-form__buttons');
+const fileFormTextarea = document.querySelector('.file-form__textarea');
+const popupWrapper = document.querySelector('.popup__wrapper');
+const popupTitle = document.querySelector('.popup__title_shot');
+const buttonVideo = document.querySelector('.gallery-files__btn_video');
+const buttonTask = document.querySelector('.gallery-files__btn_task');
+const gallery = document.getElementById('gallery');
+const galleryButton = document.querySelector('.gallery-files__button-js');
+const buttonTaskSend = document.querySelector('.gallery-files__button_task');
 const body = document.body;
+
+function showCommentPopup() {
+  fileComment.classList.remove('hide');
+  fileFormButtons.classList.add('hide');
+  const fileForm = document.querySelector('.file-form');
+  fileForm.style.display = 'block';
+  fileForm.style.width = '100%';
+  //const galleryBlocks = document.querySelectorAll('.gallery-files__block');
+  //galleryBlocks.forEach(block => block.classList.add('gallery-files__block_min'));
+  fileContent.classList.add('hide');
+  fileContent.classList.add('file-form__content_mrg');
+  fileFormTitle.innerHTML = 'Комментарий и скриншоты';
+  buttonTaskSend.innerHTML = 'Отправить';
+  buttonTaskSend.classList.add('button-send');
+
+  const bthTaskSend = document.querySelector('.button-send');
+  bthTaskSend.addEventListener('click', resetPopupShot);
+}
 
 function showPopupShot() {
   popupShot.style.display = 'flex';
   body.style.overflow = 'hidden';
 }
-function showPopupTask() {
-  popupTask.style.display = 'flex';
-  body.style.overflow = 'hidden';
-}
-function closePopupShot() {
+
+function resetPopupShot() {  
   popupShot.style.display = 'none';
   body.style.overflow = 'auto';
   const galleryBlocks = document.querySelectorAll('.gallery-files__block');
-  const fileForm = document.querySelector('.file-form');
-  fileForm.style.display = 'block';
+  fileContent.classList.remove('hide');
   galleryBlocks.forEach(block => block.remove());
   dropArea.classList.remove('open');
   galleryButton.style.display = 'none';
+  popupWrapper.classList.remove('popup-task');
+  buttonVideo.classList.remove('hide');
+  buttonTask.classList.add('hide');
+  fileFormButtons.classList.remove('hide');
+  fileFormTitle.innerHTML = 'Вставь комментарий и скриншоты о выполнении задачи №1';
+  buttonTaskSend.innerHTML = 'Отправить скрины';
+  fileFormTextarea.value = '';
+  fileContent.classList.remove('file-form__content_mrg');
 }
+
 function closePopupAccess() {
   popupAccess.style.display = 'none';
   body.style.overflow = 'auto';
 }
-function closePopupTask() {
-  popupTask.style.display = 'none';
-  body.style.overflow = 'auto';
-}
+
 function showScreensTask() {
-  fileFormTitle.classList.add('hide');
-  fileTextarea.classList.add('hide');
-  fileFormBtns.classList.add('hide');
-  fileFormShot.classList.remove('hide');
+  fileComment.classList.add('hide');
+  fileContent.classList.remove('hide');
+  popupWrapper.classList.remove('popup__wrapper_task');
+  popupTitle.innerHTML = 'Вставь комментарии и скрины о выполнении задачи';
+  const buttonSend = document.querySelector('.gallery-files__button');
+  buttonSend.setAttribute('data-sendData', 6);
 }
 
-videoButtons.forEach(btn => btn.addEventListener('click', showPopupShot));
-closeButtonShot.addEventListener('click', closePopupShot);
-closeButtonAccess.addEventListener('click', closePopupAccess);
-taskButton.addEventListener('click', showPopupTask);
-closeButtonTask.addEventListener('click', closePopupTask);
-noScreensBtn.addEventListener('click', closePopupTask);
-addScreensBtn.addEventListener('click', showScreensTask);
-const gallery = document.getElementById('gallery');
-const galleryButton = document.querySelector('.gallery-files__button');
+videoButtons.forEach(btn => btn.addEventListener('click', () => {
+  showPopupShot();
+  const btnData = btn.dataset.buttonid;
+  const buttonSend = document.querySelector('.gallery-files__button');
+  buttonSend.setAttribute('data-sendData', btnData);
+  fileComment.classList.add('hide');
+}));
 
-galleryButton.addEventListener('click', closePopupShot);
+closeButtonShot.addEventListener('click', resetPopupShot);
+closeButtonAccess.addEventListener('click', closePopupAccess);
+taskButton.addEventListener('click', () => {
+  showPopupShot();
+  fileComment.classList.remove('hide');
+  fileContent.classList.add('hide');
+  popupWrapper.classList.add('popup__wrapper_task');
+  popupWrapper.classList.add('popup-task');
+});
+
+noScreensBtn.addEventListener('click', resetPopupShot);
+addScreensBtn.addEventListener('click', showScreensTask);
+galleryButton.addEventListener('click', resetPopupShot);
+buttonTaskSend.addEventListener('click', showCommentPopup);
 
 // ************************ Drag and drop ***************** //
 let dropArea = document.querySelector(".drop-area");
@@ -217,7 +256,7 @@ function handleDrop(e) {
 
 function handleFiles(files) {
   files = [...files];
-  files.forEach(uploadFile);
+  uploadFiles(files);
   files.forEach(previewFile);
 }
 
@@ -225,7 +264,14 @@ function previewFile(file) {
   let reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onloadend = function () {
-    galleryButton.style.display = 'block';
+    if (dropArea.classList.contains('popup-task')) {
+      buttonVideo.classList.add('hide');
+      buttonTask.classList.remove('hide');
+      buttonTaskSend.style.display = 'block';
+    } else {
+      galleryButton.style.display = 'block';
+    }
+
     dropArea.classList.add('open');
 
     let divImage = document.createElement('div');
@@ -241,24 +287,24 @@ function previewFile(file) {
     let galleryBlocks = document.querySelectorAll('.gallery-files__block');
     for (let i = 0; i < galleryBlocks.length; i++) {
       if (galleryBlocks.length > 1) {
-        document.querySelector('.file-form').style.display = 'none';
+        fileContent.classList.add('hide');
       }
     }
     galleryBlocks.forEach(el => el.addEventListener('click', function () {
       this.remove();
-      document.querySelector('.file-form').style.display = 'block';
+      fileContent.classList.remove('hide');      
     }));
   }
 }
 
-function uploadFile(file, i) {
+function uploadFiles(files) {
   let url = '';
   let xhr = new XMLHttpRequest();
   let formData = new FormData();
   xhr.open('POST', url, true);
   xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-  formData.append('file', file);
+  formData.append('file', files);
   xhr.send(formData);
 }
 
