@@ -64,8 +64,8 @@ $('.submenu__item').click(function () {
   }
 });
 $('.submenu__head').click(function (e) {
-  $(this).next().children().addClass('add');
-  $(this).next().children().addClass('showed');
+  $(this).next().children('.submenu__item_sub:first-child').addClass('add');
+  $(this).next().children('.submenu__item_sub:first-child').addClass('showed');
   
   if($(this).parent().hasClass('showed')) {
     e.preventDefault();
