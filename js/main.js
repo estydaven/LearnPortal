@@ -57,7 +57,7 @@ $('.js-tab-trigger').click(function () {
     $('.cabinet-menu').addClass('hide');
   }
 });
-$('.submenu__item').click(function () {
+$('.submenu__item-js').click(function () {
   if($(this).hasClass('showed')) {
     $(this).next().addClass('add');
     $(this).next().addClass('showed');
@@ -67,6 +67,17 @@ $('.submenu__head').click(function (e) {
   $(this).next().children('.submenu__item_sub:first-child').addClass('add');
   $(this).next().children('.submenu__item_sub:first-child').addClass('showed');
   
+  $('.submenu__item_sub').click(function () {
+    if($(this).hasClass('showed')) {
+      $(this).next().addClass('add');
+      $(this).next().addClass('showed');
+    }
+    if($(this).hasClass('submenu__item_last')) {
+      $(this).parent().parent().next().addClass('add');
+      $(this).parent().parent().next().addClass('showed');
+    }
+  });
+
   if($(this).parent().hasClass('showed')) {
     e.preventDefault();
     $(this).toggleClass('open');
