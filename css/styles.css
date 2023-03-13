@@ -715,11 +715,11 @@ input::-webkit-search-results-decoration { display: none; }
 }
 .video__button {
   width: 100%;
+  height: 60px;
+  font-size: 16px;
   margin-top: 20px;
   text-align: center;
   color: #FFFFFF;
-  line-height: 22px;
-  padding: 20px 10px;
   border-radius: 0px 0px 15px 15px;
   font-family: "suisse_intlmedium";
   background: linear-gradient(180deg, #08B1C4 0%, #7EEDFA 100%);
