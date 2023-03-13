@@ -94,9 +94,16 @@ $('.submenu__item_sub').click(function () {
 
 $(document).ready(() => {
   $('.js-btn-next').click(function () {
+    
     if (!$('.js-next').last().hasClass('active')) {
       $('.active').removeClass('active').next().addClass('active');
 
+      // if (!$('.submenu__item:last-child').hasClass('add')) {        
+      //   $('.submenu__item:last-child').parent().next('.tab-header__item').removeClass('active');
+      // } else {
+      //   $('.submenu__item:last-child').parent().next('.tab-header__item').addClass('active');
+      // }
+      
       if($('.active').hasClass('accordion-parent-js')) {
         $('.active').addClass('open');
         $('.active').next('.submenu').addClass('open');
